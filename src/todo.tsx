@@ -1,11 +1,24 @@
 import React from "react";
 
-const Todo = () => {
+type TodoPropType = {
+  todo: {
+    id: number;
+    text: string;
+    completed: boolean;
+  };
+  handleToggleTodo: (id: number) => void;
+  handleRemoveTodo: (id: number) => void;
+};
+const Todo = ({ todo, handleToggleTodo, handleRemoveTodo }: TodoPropType) => {
   return (
-    <li>
-      <input type="checkbox" />
-      <span>Todo</span>
-      <button>x</button>
+    <li
+      key={todo.id}
+      style={{
+        textDecoration: todo.completed ? "line-through" : "none",
+      }}
+    >
+      <span onClick={() => handleToggleTodo(todo.id)}>{todo.text}</span>
+      <button onClick={() => handleRemoveTodo(todo.id)}>Remove</button>
     </li>
   );
 };

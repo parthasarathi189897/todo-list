@@ -18,7 +18,7 @@ const Todo = ({ todo, handleToggleTodo, handleRemoveTodo }: TodoPropType) => {
       }}
     >
       <span onClick={() => handleToggleTodo(todo.id)}>{todo.text}</span>
-      <button onClick={() => handleRemoveTodo(todo.id)}>Remove</button>
+      <button onClick={() => handleRemoveTodo(todo.id)}><div className="custom-button">Remove</div></button>
     </li>
   );
 };

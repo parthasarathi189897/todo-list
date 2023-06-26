@@ -1,12 +1,27 @@
 import React, { createContext, useState } from "react";
 
-export const TodoContext = createContext({});
-
 export type Todo = {
   id: number;
   text: string;
   completed: boolean;
 };
+export type TodoContextType = {
+  todos: Todo[];
+  inputValue: string;
+  handleAddTodo: () => void;
+  handleRemoveTodo: (id: number) => void;
+  handleToggleTodo: (id: number) => void;
+  setInputValue: (value: string) => void;
+};
+export const TodoContext = createContext<TodoContextType>({
+  todos: [],
+  inputValue: "",
+  handleAddTodo: () => {},
+  handleRemoveTodo: (id: number) => {},
+  handleToggleTodo: (id: number) => {},
+  setInputValue: (value: string) => {},
+});
+
 function TodoContextProvider({ children }: { children: React.ReactNode }) {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState("");
@@ -51,6 +66,7 @@ function TodoContextProvider({ children }: { children: React.ReactNode }) {
     handleAddTodo,
     handleRemoveTodo,
     handleToggleTodo,
+    setInputValue,
   };
 
   return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
